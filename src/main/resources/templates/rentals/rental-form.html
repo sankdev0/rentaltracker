@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+
+  <!-- Bootstrap CSS -->
+  <link crossorigin="anonymous"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+        rel="stylesheet">
+
+  <title>Объект</title>
+</head>
+<body>
+<div class="container">
+
+  <h3>Список объектов</h3>
+  <hr>
+  <p class="h4 mb-4">Сохранить объект</p>
+
+  <form action="#" method="POST"
+        th:action="@{/rentals/save}" th:object="${rental}">
+
+    <input class="form-control mb-4 col-4" placeholder="Тип помещения"
+           th:field="*{type}" type="text">
+
+    <input class="form-control mb-4 col-4" placeholder="Адрес"
+           th:field="*{address}" type="text">
+
+    <input class="form-control mb-4 col-4" placeholder="Площадь"
+           th:field="*{roomArea}" type="text">
+
+    <input class="form-control mb-4 col-4" placeholder="Площадь подвала"
+           th:field="*{basementArea}" type="text">
+
+    <input class="form-control mb-4 col-4" placeholder="Коэф. подвала"
+           th:field="*{basementMultiplier}" type="text">
+
+    <input class="form-control mb-4 col-4" placeholder="Коэф. технического оснащения"
+           th:field="*{technicalMultiplier}" type="text">
+
+    <button class="btn btn-info col-2" type="submit">Сохранить</button>
+  </form>
+
+  <hr>
+  <a th:href="@{/rentals/list}">Назад к списку объектов</a>
+</div>
+</body>
+</html>

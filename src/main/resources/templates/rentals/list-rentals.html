@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+
+  <!-- Bootstrap CSS -->
+  <link crossorigin="anonymous"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+        rel="stylesheet">
+
+  <title>Объекты</title>
+</head>
+<body>
+<div class="container">
+  <h3>Список объектов</h3>
+  <hr>
+  <br>
+  <a class="btn btn-primary btn-sm mb-3"
+     th:href="@{/rentals/showFormForAdd}">
+    Добавить объект
+  </a>
+  <table class="table table-bordered table-striped">
+    <thead class="thead-dark">
+    <tr>
+      <th>Тип помещения</th>
+      <th>Адрес</th>
+      <th>Площадь</th>
+      <th>Площадь подвала</th>
+      <th>Коэф. подвала</th>
+      <th>Коэф. технического оснащения</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="tempRental : ${rentals}">
+      <td th:text="${tempRental.type}"></td>
+      <td th:text="${tempRental.address}"></td>
+      <td th:text="${tempRental.roomArea}"></td>
+      <td th:text="${tempRental.basementArea}"></td>
+      <td th:text="${tempRental.basementMultiplier}"></td>
+      <td th:text="${tempRental.technicalMultiplier}"></td>
+    </tr>
+    </tbody>
+  </table>
+  <a class="btn btn-primary btn-sm m-3"
+     th:href="@{/}">
+    Назад
+  </a>
+</div>
+</body>
+</html>
