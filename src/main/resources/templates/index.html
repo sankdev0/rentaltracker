@@ -21,8 +21,10 @@
   <i><p th:text="${organization.getAddress()}"></p></i>
   <p th:text="${organization.getPhone()}"></p>
   <p th:text="${organization.getEmail()}"></p>
-  <br>Сумма оплат за текущий месяц: <p th:text="${reportDate}"></p>
-  <p th:text="${rentalAmount}"></p>
+  <br>
+  <p>Сумма оплат за текущий месяц по состоянию на
+    <span th:text="${#temporals.format(reportDate, 'dd.MM.yyyy')}"></span>:
+  <p th:text="${#numbers.formatCurrency(rentalAmount)}"></p>
   <hr>
 
   <form action="#" method="GET" th:action="@{/recalculateRentalAmount}" th:object="${reportDate}">

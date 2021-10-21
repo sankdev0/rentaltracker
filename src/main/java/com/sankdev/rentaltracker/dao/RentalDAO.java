@@ -9,7 +9,6 @@ public interface RentalDAO {
 
   Rental findById(long theId);
 
-
   void save(Rental theRental);
 
   void deleteById(long theId);

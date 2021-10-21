@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/rentals")
@@ -59,5 +60,16 @@ public class RentalController {
 
     // use a redirect to prevent duplicate submissions
     return "redirect:/rentals/list";
+  }
+
+  @GetMapping("/delete")
+  public String delete(@RequestParam("rentalId") int theId) {
+
+    // delete the rental
+    rentalService.deleteById(theId);
+
+    // redirect to /rentals/list
+    return "redirect:/rentals/list";
+
   }
 }

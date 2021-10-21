@@ -31,6 +31,7 @@
       <th>Площадь подвала</th>
       <th>Коэф. подвала</th>
       <th>Коэф. технического оснащения</th>
+      <th>Действие</th>
     </tr>
     </thead>
     <tbody>
@@ -41,6 +42,14 @@
       <td th:text="${tempRental.basementArea}"></td>
       <td th:text="${tempRental.basementMultiplier}"></td>
       <td th:text="${tempRental.technicalMultiplier}"></td>
+      <td>
+        <!-- Add "delete" button/link -->
+        <a th:href="@{/rentals/delete(rentalId=${tempRental.id})}"
+           class="btn btn-danger btn-sm"
+           onclick="if (!(confirm('Вы уверены, что хотите удалить этот объект?'))) return false">
+          Удалить
+        </a>
+      </td>
     </tr>
     </tbody>
   </table>

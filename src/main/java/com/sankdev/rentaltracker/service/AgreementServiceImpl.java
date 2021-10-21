@@ -1,9 +1,7 @@
 package com.sankdev.rentaltracker.service;
 
 import com.sankdev.rentaltracker.dao.AgreementDAO;
-import com.sankdev.rentaltracker.dao.BaseRateDAO;
 import com.sankdev.rentaltracker.entity.Agreement;
-import com.sankdev.rentaltracker.entity.BaseRate;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
@@ -15,12 +13,12 @@ import org.springframework.transaction.annotation.Transactional;
 public class AgreementServiceImpl implements AgreementService {
 
   private AgreementDAO agreementDAO;
-  private BaseRateDAO baseRateDAO;
+  private RentalService rentalService;
 
   @Autowired
-  public AgreementServiceImpl(AgreementDAO theAgreementDAO, BaseRateDAO theBaseRateDAO) {
+  public AgreementServiceImpl(AgreementDAO theAgreementDAO, RentalService theRentalService) {
     agreementDAO = theAgreementDAO;
-    baseRateDAO = theBaseRateDAO;
+    rentalService = theRentalService;
   }
 
   @Override
@@ -33,14 +31,15 @@ public class AgreementServiceImpl implements AgreementService {
   @Transactional
   public BigDecimal getRentalAmount(LocalDate reportDate) {
 
-    BaseRate rate = baseRateDAO.getBaseRate(reportDate);
-    BigDecimal result = BigDecimal.valueOf(0);
+    List<Agreement> agreements = findAll();
 
-    if (rate != null) {
-      return rate.getRate();
-    } else {
-      return result;
+    BigDecimal rentalAmount = BigDecimal.valueOf(0);
+
+    for (Agreement tempAgreement : agreements) {
+      rentalAmount = rentalAmount.add(
+          rentalService.getRentalAmount(tempAgreement.getRental(), reportDate));
     }
 
+    return rentalAmount;
   }
 }

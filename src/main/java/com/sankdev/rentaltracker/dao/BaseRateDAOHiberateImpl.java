@@ -38,7 +38,7 @@ public class BaseRateDAOHiberateImpl implements BaseRateDAO {
 
     Optional<BaseRate> result = rates.stream().findFirst();
 
-    if(result.isPresent()) {
+    if (result.isPresent()) {
       return result.get();
     } else {
       return null;
